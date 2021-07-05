@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 
 class UserRegisterForm(forms.Form):
-    user_name = forms.CharField(max_length=50)
-    email = forms.EmailField()
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    password_1 = forms.CharField(max_length=50, widget=forms.PasswordInput)
-    password_2 = forms.CharField(max_length=50, widget=forms.PasswordInput)
+    user_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder':'نام کاربری خود را وارد کنید'}) )
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder':'ایمیل خود را وارد کنید'}))
+    first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder':'نام خود را وارد کنید'}))
+    last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'نام خانوادگی خود را وارد کنید'}))
+    password_1 = forms.CharField(max_length=50, widget=forms.PasswordInput(attrs={'placeholder':'کلمه عبور را وارد کنید'}))
+    password_2 = forms.CharField(max_length=50, widget=forms.PasswordInput(attrs={'placeholder':'کلمه عبور را مجدد وارد کنید'}))
 
     def clean_user_name(self):
         user = self.cleaned_data['user_name']
@@ -35,5 +35,5 @@ class UserRegisterForm(forms.Form):
         return password1
 
 class UserLoginForm(forms.Form):
-    user = forms.CharField(max_length=50)
-    password = forms.CharField(widget=forms.PasswordInput)
+    user = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder':'نام کاربری یا ایمیل خود را وارد کنید'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'کلمه عبو خود را وارد کنید'}))

@@ -2,9 +2,11 @@
 {% block title %}LOGIN{% endblock %}
 {% block body %}
     <h1>LOGIN</h1>
-    <form method="post">
+    <form method="post" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
+{#        {{ form.as_p }}#}
+        <input type="text" name="user" placeholder="نام کاربری یا ایمیل "><br><br>
+        <input type="password" name="password" placeholder="کلمه عبور خود را وارد کنید"><br><br>
         <button type="submit"> ورود </button>
     </form>
 {% endblock %}
